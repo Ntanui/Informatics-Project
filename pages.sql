@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS pages;
+DROP TABLE IF EXISTS person;
 
 /* This is a very simple table for a mysql-php example */
 CREATE TABLE pages (
@@ -38,7 +39,8 @@ CREATE TABLE news (
 
 CREATE TABLE person (
 	id INT NOT NULL AUTO_INCREMENT,
-	personName VARCHAR(32) NOT NULL, /* account for login */
+	firstName VARCHAR(32) NOT NULL, /* Person's name */
+    lastName VARCHAR(32) NOT NULL,
 	email VARCHAR(32) NOT NULL, 
 	phone VARCHAR(32), /* 2 types of contact information, phone can be null */
 	personType VARCHAR(32) NOT NULL, /* person's title shown on the list */
@@ -52,4 +54,5 @@ CREATE TABLE img (
 );
 
 /* Insert home page */
+INSERT INTO person (firstName, lastName, email, phone, personType) VALUES ("JP", "PN", "whoever@uiowa.edu", "", "member");
 INSERT INTO pages (urlTitle, pageTitle, menuTitle, parent, bodyTitle, body) VALUES ("home", "Home - Soccer Lover's Club", "home", -1, "Welcome to the Soccer Lover's Club", "Cleats, goals, and tackles.");
