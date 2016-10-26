@@ -1,5 +1,9 @@
 DROP TABLE IF EXISTS pages;
+DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS event;
+DROP TABLE IF EXISTS news;
 DROP TABLE IF EXISTS person;
+DROP TABLE IF EXISTS img;
 
 /* This is a very simple table for a mysql-php example */
 CREATE TABLE pages (
