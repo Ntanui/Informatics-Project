@@ -9,7 +9,46 @@ CREATE TABLE pages (
     parent INT, /* parent page */
     bodyTitle VARCHAR(128) NOT NULL, /* title shown in the body of the page */
     body TEXT, /* content of the page (only text for now) */
-    PRIMARY KEY (ID)
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE account (
+	id INT NOT NULL AUTO_INCREMENT,
+	userName VARCHAR(32) NOT NULL, /* account for login */
+	password VARCHAR(32) NOT NULL, /* password for login */
+	admin INT, /* determine if a user is administrator or not */
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE event (
+	id INT NOT NULL AUTO_INCREMENT,
+	eventName VARCHAR(32) NOT NULL, /* shown as the title on the calendar or the list of event */
+	timeToHold VARCHAR(32) NOT NULL, /* time message of event */
+	content VARCHAR(255), /* details about this event */
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE news (
+	id INT NOT NULL AUTO_INCREMENT,
+	newsTitle VARCHAR(32) NOT NULL, /* shown as the title on the list of news */
+	timePost VARCHAR(32) NOT NULL, /* time the news posted */
+	preview VARCHAR(255), /* short preview content to show on the list */
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE person (
+	id INT NOT NULL AUTO_INCREMENT,
+	personName VARCHAR(32) NOT NULL, /* account for login */
+	email VARCHAR(32) NOT NULL, 
+	phone VARCHAR(32), /* 2 types of contact information, phone can be null */
+	personType VARCHAR(32) NOT NULL, /* person's title shown on the list */
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE img (
+	id INT NOT NULL AUTO_INCREMENT,
+	fileName VARCHAR(32) NOT NULL, /* the name used to save image on the server */
+	PRIMARY KEY (id)
 );
 
 /* Insert home page */
