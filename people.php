@@ -44,10 +44,11 @@ if (isset($_POST['submit'])) {
     //only run if the form was submitted
     
     //get data from form
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $contactinfo = $_POST['contact information'];
-    $role = $_POST['role'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $personType= $_POST['personType'];
 
     
     //connect to database
@@ -56,32 +57,39 @@ if (isset($_POST['submit'])) {
     $isComplete = true;
     $errorMessage = "";
     
-    if(!$firstname) {
+    if(!$firstName) {
         $errorMessage .= "Please enter a First Name";
         $isComplete = false;
     } else {
-        $firstname = makeStringSafe($db, $firstname);
+        $firstName = makeStringSafe($db, $firstName);
     }
     
-    if (!$lastname) {
+    if (!$lastName) {
         $errorMessage .= " Please enter a Last Name";
         $isComplete = false;
     } else {
-        $lastname = makeStringSafe($db, $lastname);
+        $lastName = makeStringSafe($db, $lastName);
     }
 
-    if (!$contactinfo) {
-        $errorMessage .= " Please enter a contact information";
+    if (!$email) {
+        $errorMessage .= " Please enter your email address";
         $isComplete = false;
     } else {
-        $contactinfo = makeStringSafe($db, $contactinfo);
+        $email = makeStringSafe($db, $email);
     }
-
-    if (!$role) {
-        $errorMessage .= " Please enter a role in organization";
+    
+    if (!$phone) {
+        $errorMessage .= " Please enter your phone number  (If you don't want to put your phone number it is fine)";
         $isComplete = false;
     } else {
-        $role = makeStringSafe($db, $role);
+        $phone = makeStringSafe($db, $phone);
+    }
+    
+    if (!$personType) {
+        $errorMessage .= " Please enter your position in organization";
+        $isComplete = false;
+    } else {
+        $personType = makeStringSafe($db, $personType);
     }
     
     
@@ -92,14 +100,14 @@ if (isset($_POST['submit'])) {
 
     
     //check
-    $query = "SELECT * FROM directors WHERE firstname='" .  $firstname . "' AND lastname='" . $lastname . "' AND contact inforamtion='" . $contactinfo . "'AND role='" . $role . "';";
+    $query = "SELECT * FROM person WHERE firstName='" .  $firstName . "' AND lastName='" . $lastName . "' ADD email='" . $email . "' ADD phone number='" . $phone . "'AND position='" . $personType . "';";
     $result = queryDB($query, $db);
     if (nTuples($result) >  0) {
-        punt("Sorry. We already have a director called " . $firstname . " " . $lastname);
+        punt("Sorry. We already have a person called " . $firstName . " " . $lastname);
     }
     
     //according to lecture, put together sql code to insert tuple or record
-    $insert = "INSERT INTO directors (firstname, lastname, contact information, role) VALUES ('" . $firstname . "', '" . $lastname . "', '" . $contactinfo . "', '" . $role . "');";
+    $insert = "INSERT INTO people (firstName, lastName, email, phone, position) VALUES ('" . $firstName . "', '" . $lastName . "', '" . $email . "', '" . $phone . "', '" . $role . "');";
     
 
     
@@ -107,7 +115,7 @@ if (isset($_POST['submit'])) {
     $result = queryDB($insert, $db);
     
     //we have successfully inserted the record
-    echo ("Seccessfully entered " . $firstname . " " . $lastname . " into the database.");
+    echo ("Seccessfully entered " . $firstName . " " . $lastName . " into the database.");
     
     //maybe delete this line
     //echo $insert;
@@ -127,22 +135,34 @@ if (isset($_POST['submit'])) {
 <form action="people.php" method="post">
 <!-- first name -->
     <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" class="form-control" name="firstname"/>
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" name="firstName"/>
     </div>
 
 <!-- last name -->
     <div class="form-group">
-        <label for="lastname">Last Name</label>
-        <input type="text" class="form-control" name="lastname"/>
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" name="lastName"/>
     </div>
     
-<!-- year -->    
+<!-- email -->    
     <div class="form-group">
-        <label for="contact information">Country</label>
-        <input type="text" class="form-control" name="conctact information"/>
-    </div>       
+        <label for="contact information">Email</label>
+        <input type="text" class="form-control" name="email"/>
+    </div>
+    
+<!-- email -->    
+    <div class="form-group">
+        <label for="contact information">Phone Number (This is optional)</label>
+        <input type="text" class="form-control" name="phone"/>
+    </div>   
 
+<!-- role -->    
+    <div class="form-group">
+        <label for="contact information">Position</label>
+        <input type="text" class="form-control" name="personType"/>
+    </div>
+    
     
     <button type="submit" class="btn btn-default" name="submit">Add</button>
 </form>            
@@ -160,7 +180,9 @@ if (isset($_POST['submit'])) {
     <thead>
         <tr>
             <th>Name</th>
-            <th>Organization</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Position</th>
             <th> </th>
             <th> </th>
         </tr>
@@ -177,7 +199,7 @@ if (isset($_POST['submit'])) {
     
     //set up query to records from the table
     // ******** I was not sure about this ********
-    $query="SELECT * FROM directors ORDER BY lastname;";
+    $query="SELECT * FROM person ORDER BY lastname;";
     
     //run the query
     $result = queryDB($query, $db);
@@ -185,9 +207,10 @@ if (isset($_POST['submit'])) {
     while($row = nextTuple($result)) {
         // in the lecture, each time the while loop runs we create one row in the table
         echo "\n <tr>";
-        echo "<td>" . $row['firstname'] . " " . $row['lastname'] . "</td>";
-        echo "<td>" . $row['contact inforamtion'] . "</td>";
-        echo "<td>" . $row['role'] . "</td>";
+        echo "<td>" . $row['firstName'] . " " . $row['lastName'] . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['phone'] . "</td>";
+        echo "<td>" . $row['personType'] . "</td>";
         echo "<td><a href='update 1.php?id=" . $row['id'] . "'>edit</a></td>";
         echo "<td><a href='delete 1.php?id=" . $row['id'] . "'>delete</a></td>";
         echo "<\tr>";
