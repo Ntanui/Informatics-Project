@@ -1,7 +1,6 @@
-﻿<?php
+<?php
 	$title = "Build Your Site";
 	$menuHighlight = 0;
-
 	include_once("header.php");
 ?>
         

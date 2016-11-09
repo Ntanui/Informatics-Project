@@ -13,16 +13,17 @@ CREATE TABLE pages (
     menuTitle VARCHAR(32) NOT NULL, /* title shown in menus */
     parent INT, /* parent page */
     bodyTitle VARCHAR(128) NOT NULL, /* title shown in the body of the page */
-    body TEXT, /* content of the page (only text for now) */
+    imageid int,
+    body TEXT,/* content of the page (only text for now) */
     PRIMARY KEY (id)
 );
 
+/* This table holds user accounts */
 CREATE TABLE account (
-	id INT NOT NULL AUTO_INCREMENT,
-	userName VARCHAR(32) NOT NULL, /* account for login */
-	password VARCHAR(32) NOT NULL, /* password for login */
-	admin INT, /* determine if a user is administrator or not */
-	PRIMARY KEY (id)
+    id INT NOT NULL AUTO_INCREMENT,
+    email varchar (100) NOT NULL,
+    hashedpass VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)  
 );
 
 CREATE TABLE event (
@@ -45,8 +46,7 @@ CREATE TABLE person (
 	id INT NOT NULL AUTO_INCREMENT,
 	firstName VARCHAR(32) NOT NULL, /* Person's name */
     lastName VARCHAR(32) NOT NULL,
-	email VARCHAR(32) NOT NULL, 
-	phone VARCHAR(32), /* 2 types of contact information, phone can be null */
+	email VARCHAR(32) NOT NULL,  /* 2 types of contact information, phone can be null */
 	personType VARCHAR(32) NOT NULL, /* person's title shown on the list */
 	PRIMARY KEY (id)
 );
@@ -58,5 +58,6 @@ CREATE TABLE img (
 );
 
 /* Insert home page */
-INSERT INTO person (firstName, lastName, email, phone, personType) VALUES ("JP", "PN", "whoever@uiowa.edu", "", "member");
+INSERT INTO person (firstName, lastName, email, personType) VALUES ("JP", "PN", "whoever@uiowa.edu",  "member");
 INSERT INTO pages (urlTitle, pageTitle, menuTitle, parent, bodyTitle, body) VALUES ("home", "Home - Soccer Lover's Club", "home", -1, "Welcome to the Soccer Lover's Club", "Cleats, goals, and tackles.");
+
