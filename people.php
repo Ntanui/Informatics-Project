@@ -8,7 +8,6 @@
     <head>
 
 <title>Enter Member</title>
-
 <!-- this is the code from bootstrap -->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -22,18 +21,36 @@
     </head>
     
     <body>
+        <div class="container">
         
         
 <!-- visible title-->
         <div class="row">
             <div class="col-xs-12">
+                <div class="page-header">
                 <h1>Enter Name</h1>
             </div>
         </div>
-        
-        
+
+            
         <div class="row">
             <div class="col-xs-12">
+                <div class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                    <ul class="nav nav-pills">
+                        <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+                        <li class="active"><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
+                        <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
+                        <li><a href="about.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; About</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
                 
 <?php
 //
@@ -49,7 +66,7 @@ if (isset($_POST['submit'])) {
     $personType= $_POST['personType'];
     
     //connect to database
-    $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
+    $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
     //check for required fields
     $isComplete = true;
     $errorMessage = "";
@@ -73,6 +90,13 @@ if (isset($_POST['submit'])) {
     } else {
         $email = makeStringSafe($db, $email);
     }
+    
+    /*if (!$phone) {
+        $errorMessage .= " Please enter your phone number  (If you don't want to put your phone number it is fine)";
+        $isComplete = false;
+    } else {
+        $phone = makeStringSafe($db, $phone);
+    }*/
     
     if (!$personType) {
         $errorMessage .= " Please enter your position in organization";
@@ -116,7 +140,8 @@ if (isset($_POST['submit'])) {
         </div>
         
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-sm-9 col-xs-12">
+
                 
 <!-- change the name of the file -->
 <form action="people.php" method="post">
@@ -151,7 +176,20 @@ if (isset($_POST['submit'])) {
                 
                 
             </div>
+            
+            <div class="col-sm-3 col-xs-12">                             
+                <div class="palen panel-default">
+                    <div class="panel-heading">
+                    Adding Member
+                    </div>
+                    <div class="panel-body">
+                        Please enter the first and last name of the member. Also enter contact information and click submit
+                    </div>
+                </div>
+            </div>
         </div>
+        
+        
    
 <!-- table to show contents-->     
 <div class="row">
@@ -174,7 +212,7 @@ if (isset($_POST['submit'])) {
 <?php
     if (!$db) {
         // connect to the database
-        $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
+        $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
     }
     
     //set up query to records from the table
@@ -188,9 +226,10 @@ if (isset($_POST['submit'])) {
         echo "\n <tr>";
         echo "<td>" . $row['firstName'] . " " . $row['lastName'] . "</td>";
         echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['phone'] . "</td>";
         echo "<td>" . $row['personType'] . "</td>";
-        echo "<td><a href='editpage.php?id=" . $row['id'] . "'>edit</a></td>";
-        echo "<td><a href='deletepage.php?id=" . $row['id'] . "'>delete</a></td>";
+        echo "<td><a href='update 1.php?id=" . $row['id'] . "'>edit</a></td>";
+        echo "<td><a href='delete 1.php?id=" . $row['id'] . "'>delete</a></td>";
         echo "</tr>";
     }
 ?>
