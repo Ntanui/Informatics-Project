@@ -1,3 +1,8 @@
+<?php
+    include_once('config.php');
+    include_once('dbutils.php');
+    
+?>
 
 <html>
     <head>
@@ -46,6 +51,76 @@
             
             <div class="row">
                 <div class="col-sm-9 col-xs-12">
+                    
+                
+<?php
+//
+//code to handle input from form
+//
+if (isset($_POST['submit'])) {
+    //only run if the form was submitted
+    
+    //get data from form
+    $orgName = $_POST['orgName'];
+    $contactInfo = $_POST['contactInfo'];
+    $adMininfo = $_POST['adMininfo'];
+    
+    //connect to database
+    $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
+    //check for required fields
+    $isComplete = true;
+    $errorMessage = "";
+    
+    if(!$orgName) {
+        $errorMessage .= "Please enter a First Name";
+        $isComplete = false;
+    } else {
+        $orgName = makeStringSafe($db, $orgName);
+    }
+    
+    if (!$contactInfo) {
+        $errorMessage .= " Please enter a Last Name";
+        $isComplete = false;
+    } else {
+        $contactInfo = makeStringSafe($db, $contactInfo);
+    }
+    if (!$adMininfo) {
+        $errorMessage .= " Please enter your email address";
+        $isComplete = false;
+    } else {
+        $adMininfo = makeStringSafe($db, $adMininfo);
+    }
+     
+    if (!$isComplete) {
+        punt($errorMessage);
+    }
+    
+    
+    //check
+    $query = "SELECT * FROM person WHERE orgName='" .  $orgName . "' AND contactInfo='" . $contactInfo . "' AND adMininfo='" . $adMininfo . "';";
+    $result = queryDB($query, $db);
+    if (nTuples($result) >  0) {
+        punt("Sorry. We already have a prganization name called " . $orgName . " " . $contactInfo);
+    }
+    
+    //according to lecture, put together sql code to insert tuple or record
+    $insert = "INSERT INTO person (orgName, contactInfo ,adMininfo) VALUES ('" . $orgName . "', '" . $contactInfo . "', '" . $adMininfo . "');";
+    
+    
+    //run the insert statement
+    $result = queryDB($insert, $db);
+    
+    //we have successfully inserted the record
+    echo ("Successfully entered " . $orgName . " " . $contactInfo . " into the database.");
+    
+    //maybe delete this line
+    //echo $insert;
+    
+    //echo ("Name: " . $name . ". Location: " . $location . ". URL: " . $url);
+    //until here maybe delete
+}
+?>
+
                     <p>Edit Organization</p>
                     
                     <form action="people.php" method="post">
@@ -81,7 +156,55 @@
                     </div>
                 </div>
                  
-            </div>   
+            </div>
+            
+            
+            <!-- table to show contents-->     
+<div class="row">
+    <div class="col-xs-12">
+<table class="table table-hover">
+    
+    <!-- headers gor table -->
+    <thead>
+        <tr>
+            <th>Organization Name</th>
+            <th>Contact Information</th>
+            <th>Admnistrator Information</th>
+            <th> </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+<!-- php datacode and creat the html table where you can ge the mysql table -->
+<?php
+    if (!$db) {
+        // connect to the database
+        $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
+    }
+    
+    //set up query to records from the table
+    // ******** I was not sure about this ********
+    $query="SELECT * FROM person ORDER BY orgName;";
+    
+    //run the query
+    $result = queryDB($query, $db);
+    while($row = nextTuple($result)) {
+        // in the lecture, each time the while loop runs we create one row in the table
+        echo "\n <tr>";
+        echo "<td>" . $row['orgName'] . "</td>";
+        echo "<td>" . $row['contactInfo'] . "</td>";
+        echo "<td>" . $row['adMininfo'] . "</td>";
+        echo "<td><a href='index.php?id=" . $row['id'] . "'>edit</a></td>";
+        echo "<td><a href='site.php?id=" . $row['id'] . "'>delete</a></td>";
+        echo "</tr>";
+    }
+?>
+             
+    </tbody>
+</table>
+        
+    </div>
+</div> 
             
             
             
