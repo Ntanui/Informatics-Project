@@ -72,20 +72,20 @@ if (isset($_POST['submit'])) {
     $errorMessage = "";
     
     if(!$orgName) {
-        $errorMessage .= "Please enter a First Name";
+        $errorMessage .= "Please enter a Organization Name";
         $isComplete = false;
     } else {
         $orgName = makeStringSafe($db, $orgName);
     }
     
     if (!$contactInfo) {
-        $errorMessage .= " Please enter a Last Name";
+        $errorMessage .= " Please enter a Contact Information";
         $isComplete = false;
     } else {
         $contactInfo = makeStringSafe($db, $contactInfo);
     }
     if (!$adMininfo) {
-        $errorMessage .= " Please enter your email address";
+        $errorMessage .= " Please enter Administrator Name";
         $isComplete = false;
     } else {
         $adMininfo = makeStringSafe($db, $adMininfo);
@@ -97,14 +97,14 @@ if (isset($_POST['submit'])) {
     
     
     //check
-    $query = "SELECT * FROM person WHERE orgName='" .  $orgName . "' AND contactInfo='" . $contactInfo . "' AND adMininfo='" . $adMininfo . "';";
+    $query = "SELECT * FROM organization WHERE orgName='" .  $orgName . "' AND contactInfo='" . $contactInfo . "' AND adMininfo='" . $adMininfo . "';";
     $result = queryDB($query, $db);
     if (nTuples($result) >  0) {
-        punt("Sorry. We already have a prganization name called " . $orgName . " " . $contactInfo);
+        punt("Sorry. We already have a organization name called " . $orgName . " " . $contactInfo);
     }
     
     //according to lecture, put together sql code to insert tuple or record
-    $insert = "INSERT INTO person (orgName, contactInfo ,adMininfo) VALUES ('" . $orgName . "', '" . $contactInfo . "', '" . $adMininfo . "');";
+    $insert = "INSERT INTO organization (orgName, contactInfo ,adMininfo) VALUES ('" . $orgName . "', '" . $contactInfo . "', '" . $adMininfo . "');";
     
     
     //run the insert statement
@@ -184,7 +184,7 @@ if (isset($_POST['submit'])) {
     
     //set up query to records from the table
     // ******** I was not sure about this ********
-    $query="SELECT * FROM person ORDER BY orgName;";
+    $query="SELECT * FROM organization ORDER BY orgName;";
     
     //run the query
     $result = queryDB($query, $db);
@@ -194,8 +194,8 @@ if (isset($_POST['submit'])) {
         echo "<td>" . $row['orgName'] . "</td>";
         echo "<td>" . $row['contactInfo'] . "</td>";
         echo "<td>" . $row['adMininfo'] . "</td>";
-        echo "<td><a href='index.php?id=" . $row['id'] . "'>edit</a></td>";
-        echo "<td><a href='site.php?id=" . $row['id'] . "'>delete</a></td>";
+        echo "<td><a href='edit.php?id=" . $row['id'] . "'>edit</a></td>";
+        echo "<td><a href='delete.php?id=" . $row['id'] . "'>delete</a></td>";
         echo "</tr>";
     }
 ?>

@@ -11,25 +11,33 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.theme.min.css">
     </head>
     <body>
-        <div class="container">
-            
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="page-header">
-                    <h1>Calendar</h1>
+        <div class="container" style="width: 1024px">
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-header">
+                    <!-- Header -->
+                    <h1>Choose Calendar</h1>
+                    <a href="index.php">View site</a>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a href="site.php">Back to creating site</a>
+                        </div>
                     </div>
-                </div> 
-            </div>
+                </div>
+            </div>  
+        </div>
             
             <div class="row">
                 <div class="col-xs-12">
                     <div class="navbar navbar-inverse">
                         <div class="container-fluid">
                         <ul class="nav nav-pills">
-                            <li class="active"><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+                            <li><a href="input.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Edit Page</a></li>
                             <li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
                             <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
-                            <li><a href="about.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; About</a></li>
+                            <li class="active"><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+                            <li><a href="about.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Administrator</a></li>
                         </ul>
                         </div>
                     </div>
@@ -42,7 +50,7 @@
                     <p>
                         Calendar
                     </p>
-                    <iframe src="https://calendar.google.com/calendar/embed?src=xkrtack%40gmail.com&ctz=America/Chicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                    <iframe src="https://calendar.google.com/calendar/embed?src=8krmejpp3n310edoubgm43fu44%40group.calendar.google.com&ctz=America/Chicago" style="border: 0" width="750" height="600" frameborder="0" scrolling="no"></iframe>
                 </div>
                 
                 <div class="col-sm-3 col-xs-12">
