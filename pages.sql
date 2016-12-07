@@ -51,6 +51,14 @@ CREATE TABLE person (
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE organization(
+    id INT NOT NULL AUTO_INCREMENT,
+    orgName VARCHAR(32) NOT NULL,
+    contactInfo VARCHAR(32) NOT NULL,
+    adMininfo VARCHAR(32) NOT NULL,
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE img (
 	id INT NOT NULL AUTO_INCREMENT,
 	fileName VARCHAR(32) NOT NULL, /* the name used to save image on the server */
@@ -60,4 +68,4 @@ CREATE TABLE img (
 /* Insert home page */
 INSERT INTO person (firstName, lastName, email, personType) VALUES ("JP", "PN", "whoever@uiowa.edu",  "member");
 INSERT INTO pages (urlTitle, pageTitle, menuTitle, parent, bodyTitle, body) VALUES ("home", "Home - Soccer Lover's Club", "home", -1, "Welcome to the Soccer Lover's Club", "Cleats, goals, and tackles.");
-
+INSERT INTO pages(people,news, calendar, organization) VALUES("firstname", "lastname", "calendar", "organization");
