@@ -7,31 +7,72 @@
 <?php
     include_once('config.php');
     include_once('dbutils.php');
-
 ?>
 
 <html>
     <head>
         
-<?php
-	include_once("header.php");
-?>
+
         
-<title> Enter News . </title>
-
-<!-- Code from Bootsrap -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+        <title>News</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap/min.js"></script>
+        
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.theme.min.css">
     </head>
-           
     <body>
+<div class="container" style="width: 1024px">
+
+<!-- if you have a site table, you'd get this from there -->
+<div class="row">
+    <div class="col-xs-10">
+        
+    </div>
+    <div class="col-xs-2">
+        <a href="login.php">Log In</a>
+        <a>or</a>
+        <a href="login.php">Log Out</a>
+    </div>
+</div>
+
+    <div class="container" style="width: 1024px">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-header">
+                <!-- Header -->
+                <h1>Add News</h1>
+                <a href="index.php">View site</a>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="site.php">Back to creating site</a>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+            
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="navbar navbar-inverse">
+                        <div class="container-fluid">
+                        <ul class="nav nav-pills">
+                            <li><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
+                            <li><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Edit Page</a></li>
+                            <li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
+                            <li class="active"><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
+                            <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-9 col-xs-12">
+                    
         
 <h2>Welcome to your news post page!</h2>
 
@@ -40,7 +81,6 @@
             <div class= "col-xs-12">
                 
 <?php
-
 //
 // Code to handle input from the form
 //
@@ -51,7 +91,6 @@ if (isset($_POST['submit'])) {
     $newsTitle = $_POST['newsTitle'];
     $timePost = $_POST['timePost'];
     $preview = $_POST['preview'];
-
     
     if (!$db){
         // Connect to database
@@ -110,32 +149,32 @@ if (isset($_POST['submit'])) {
             <div class="col-xs-12">
                 <h1>Enter Name</h1>
             </div>
-
+        </div>
         
         <div class="row">
             <div class="col-xs-12">
-<form action= "inputuseers.php" method ="post">
-    
-<!-- title -->
-    <div class="form-group">
-        <label for="email"> Newstitle </label>
-        <input type="text" class="form-control" name ="newstitle"/>
-    </div>
-    
-<!-- news -->
-    <div class="form-group">
-        <label for=""> Article </label>
-		<input type="text" style="font-size:18pt;height:200px;width:1150px;">
+                <form action= "inputuseers.php" method ="post">
+                
+                    
+                <!-- title -->
+                    <div class="form-group">
+                        <label for="email"> Newstitle </label>
+                        <input type="text" class="form-control" name ="newstitle"/>
+                    </div>
+                    
+                <!-- news -->
+                    <div class="form-group">
+                        <label for=""> Article </label>
+                        <textarea class="form-control" name="editbody" id="editbody" rows="10"></textarea>
+                    </div>
+                
+                        
+                    <button type="submit" class="btn btn-default col-xs-12" name ="submit">Post</button>
+                    
+                </form>
+            </div>
 
-    </div
-         
-    <div class="form-group">
-        <label for="preview"> Preview </label>
-        <input type="text" class="form-control" name ="preview"/>
-    </div>
-        
-    <button type="submit" class="btn btn-default" name ="submit">Post</button>
-	
+        </div>
 
 <!-- Table to show contents of database -->
 
@@ -144,20 +183,14 @@ if (isset($_POST['submit'])) {
 <table class = "table table-hover">
     
     <!-- Headers for table -->
-    <thead>
-        <tr>
-            <th> Article Name</th>
-        </tr>
-    </thead>
+
     
     <tbody>
 <?php
-
     if (!$db){
         // Connect to database
         $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
     }
-
     // Set up query to get all records from users table.
     $query = "SELECT * FROM news ORDER BY newsTitle;";
     
@@ -172,7 +205,6 @@ if (isset($_POST['submit'])) {
         echo "<td>" . $row['preview'] . "</td>" ;
         echo "</tr>";
     }
-
 ?>
     </tbody>   
 </table>
