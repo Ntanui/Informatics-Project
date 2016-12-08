@@ -21,16 +21,23 @@
     </head>
     
     <body>
-        <div class="container">
-        
-        
-<!-- visible title-->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="page-header">
-                <h1>Enter Name</h1>
+    <div class="container" style="width: 1024px">
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-header">
+                <!-- Header -->
+                <h1>Edit People</h1>
+                <a href="index.php">View site</a>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="site.php">Back to creating site</a>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div>  
+    </div>
+        
 
             
         <div class="row">
@@ -38,10 +45,11 @@
                 <div class="navbar navbar-inverse">
                     <div class="container-fluid">
                     <ul class="nav nav-pills">
-                        <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+                        <li><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
+                        <li><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Edit Page</a></li>
                         <li class="active"><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
                         <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
-                        <li><a href="about.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; About</a></li>
+                        <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
                     </ul>
                     </div>
                 </div>
@@ -201,7 +209,6 @@ if (isset($_POST['submit'])) {
         <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Phone Number</th>
             <th>Position</th>
             <th> </th>
         </tr>
@@ -226,7 +233,6 @@ if (isset($_POST['submit'])) {
         echo "\n <tr>";
         echo "<td>" . $row['firstName'] . " " . $row['lastName'] . "</td>";
         echo "<td>" . $row['email'] . "</td>";
-        echo "<td>" . $row['phone'] . "</td>";
         echo "<td>" . $row['personType'] . "</td>";
         echo "<td><a href='update 1.php?id=" . $row['id'] . "'>edit</a></td>";
         echo "<td><a href='delete 1.php?id=" . $row['id'] . "'>delete</a></td>";
