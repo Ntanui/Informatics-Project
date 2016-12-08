@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS news;
 DROP TABLE IF EXISTS person;
+DROP TABLE IF EXISTS organization;
 DROP TABLE IF EXISTS img;
 
 /* This is a very simple table for a mysql-php example */
@@ -15,6 +16,7 @@ CREATE TABLE pages (
     bodyTitle VARCHAR(128) NOT NULL, /* title shown in the body of the page */
     imageid int,
     body TEXT,/* content of the page (only text for now) */
+    pageType VARCHAR (32) not null,
     PRIMARY KEY (id)
 );
 
@@ -67,5 +69,5 @@ CREATE TABLE img (
 
 /* Insert home page */
 INSERT INTO person (firstName, lastName, email, personType) VALUES ("JP", "PN", "whoever@uiowa.edu",  "member");
-INSERT INTO pages (urlTitle, pageTitle, menuTitle, parent, bodyTitle, body) VALUES ("home", "Home - Soccer Lover's Club", "home", -1, "Welcome to the Soccer Lover's Club", "Cleats, goals, and tackles.");
-INSERT INTO pages(people,news, calendar, organization) VALUES("firstname", "lastname", "calendar", "organization");
+INSERT INTO pages (urlTitle, pageTitle, menuTitle, parent, bodyTitle, body) VALUES ("home", "Home - Iowa Bikers", "home", -1, "Welcome to the Iowa Bikers's Club", "Bikes and fun.");
+INSERT INTO organization(orgName,contactInfo,adMininfo) VALUES ("Iowa Bikers Club","Iowabikers.com", "Admin@iowabikers.com");
