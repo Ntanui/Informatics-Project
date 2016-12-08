@@ -1,7 +1,6 @@
 <?php
     include_once("dbutils.php");
     include_once("config.php");
-
     
     //
     // We use this bit of code to generate a list of possible parents for the data entry portion
@@ -43,7 +42,7 @@
 <html>
 
 <head>
-    <title>Pages entry</title>
+    <title>Create Site</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -65,11 +64,32 @@
     <div class="col-xs-12">
         <div class="page-header">
             <!-- Header -->
-            <h1>Page data entry</h1>
+            <h1>Create Site</h1>
             <a href="index.php">View site</a>
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="site.php">Back to creating site</a>
+                </div>
+            </div>
         </div>
     </div>  
 </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                    <ul class="nav nav-pills">
+                        <li><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
+                        <li class="active"><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Create Site</a></li>
+                        <li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
+                        <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
+                        <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <div class="row">
 <div class="col-xs-12">
@@ -104,7 +124,29 @@
         <textarea class="form-control" name="body" rows="5"></textarea>
     </div>
     
+    <div class="form-group">
+        <label for="body">Select Page</label>
+            <form>
+                <input type="radio" name="gender" value="male"> None<br>
+                <input type="radio" name="gender" value="female"> Home<br>
+                <input type="radio" name="gender" value="female"> List of People<br>
+                <input type="radio" name="gender" value="female"> News<br>
+                <input type="radio" name="gender" value="other"> Calendar<br>
+            </form> 
+    </div>
+
+    
     <button type="submit" class="btn btn-default">Add</button>
+    <p>
+        <br/>
+    </p>
+    <div class="form-group">
+        <label for="body">Insert Image</label>
+            <button id="img-insert-btn">select</button>
+    </div>
+    <button type="submit" class="btn btn-default">Add</button>
+
+    
 </form>
 </div> <!-- close column -->
 </div> <!-- close row -->
@@ -257,7 +299,6 @@
         
         document.getElementById("editid").value = id;
         
-
         $("#dialog-form").dialog("open");        
     }
     
