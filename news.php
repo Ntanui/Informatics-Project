@@ -17,7 +17,7 @@
 	include_once("header.php");
 ?>
         
-<title> Enter News. </title>
+<title> Enter News . </title>
 
 <!-- Code from Bootsrap -->
 <!-- Latest compiled and minified CSS -->
@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
     
     
     // Sql code to insert tuple or record
-    $insert = "INSERT INTO news(newsTitle,news) VALUES ('" . $newsTitle . "' , '" . $timePost . "');";
+    $insert = "INSERT INTO news(newsTitle,timePost) VALUES ('" . $newsTitle . "' , '" . $timePost . "');";
     
     
     //run the insert statement
@@ -105,26 +105,27 @@ if (isset($_POST['submit'])) {
         }
            
 ?>
-      
+<!-- visible title-->
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Enter Name</h1>
             </div>
-        </div>
+
         
-     
-        <div class ="row">
-             <div class = "col-xs-12">
-                                 
+        <div class="row">
+            <div class="col-xs-12">
 <form action= "inputuseers.php" method ="post">
     
 <!-- title -->
     <div class="form-group">
         <label for="email"> Newstitle </label>
-        <input type="text" class="form-control" name ="newsTitle" />
+        <input type="text" class="form-control" name ="newstitle"/>
     </div>
     
 <!-- news -->
     <div class="form-group">
-        <label for=""> TimePost </label>
-        <input type="text" class="form-control" name ="timePost"/>
+        <label for=""> Article </label>
+		<input type="text" style="font-size:18pt;height:200px;width:1150px;">
 
     </div
          
