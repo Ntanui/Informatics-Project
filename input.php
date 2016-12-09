@@ -57,6 +57,19 @@
 </head>
 
 <body>
+<div class="container" style="width: 1024px">
+
+<!-- if you have a site table, you'd get this from there -->
+<div class="row">
+    <div class="col-xs-10">
+        
+    </div>
+    <div class="col-xs-2">
+        <a href="login.php">Log In</a>
+        <a>or</a>
+        <a href="login.php">Log Out</a>
+    </div>
+</div>
     
 <div class="container" style="width: 1024px">
 
@@ -125,13 +138,20 @@
     </div>
     
     <div class="form-group">
-        <label for="body">Select Page</label>
+        <label for="body">Edit Page</label>
             <form>
-                <input type="radio" name="gender" value="male"> None<br>
-                <input type="radio" name="gender" value="female"> Home<br>
-                <input type="radio" name="gender" value="female"> List of People<br>
-                <input type="radio" name="gender" value="female"> News<br>
-                <input type="radio" name="gender" value="other"> Calendar<br>
+            </form>
+            <form>
+                <h5>None</h5>
+                <button id="img-insert-btn"><a href="input.php">Select</a></button>
+                <h5>Home</h5>
+                <button id="img-insert-btn"><a href="about.php">Select</a></button>
+                <h5>List of People</h5>
+                <button id="img-insert-btn"><a href="people.php">Select</a></button>
+                <h5>News</h5>
+                <button id="img-insert-btn"><a href="news.php">Select</a></button>
+                <h5>Calendar</h5>
+                <button id="img-insert-btn"><a href="calendar.php">Select</a></button>
             </form> 
     </div>
 
@@ -140,11 +160,6 @@
     <p>
         <br/>
     </p>
-    <div class="form-group">
-        <label for="body">Insert Image</label>
-            <button id="img-insert-btn">select</button>
-    </div>
-    <button type="submit" class="btn btn-default">Add</button>
 
     
 </form>

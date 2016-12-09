@@ -21,6 +21,21 @@
     </head>
     
     <body>
+
+<div class="container" style="width: 1024px">
+
+<!-- if you have a site table, you'd get this from there -->
+<div class="row">
+    <div class="col-xs-10">
+        
+    </div>
+    <div class="col-xs-2">
+        <a href="login.php">Log In</a>
+        <a>or</a>
+        <a href="login.php">Log Out</a>
+    </div>
+</div>
+
     <div class="container" style="width: 1024px">
     
     <div class="row">
