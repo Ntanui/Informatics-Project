@@ -1,7 +1,6 @@
 <?php
     include_once("dbutils.php");
     include_once("config.php");
-
     // get the page we are in
     if (isset($_GET['page'])) {
         $urlTitle = $_GET['page'];
@@ -12,7 +11,6 @@
     // get all the information about the page based on urlTitle
     // get a handle to the database
     $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
-
     $query = "select id, pageTitle, menuTitle, parent, bodyTitle, body from pages where urlTitle='" . $urlTitle . "'";
     
     $result = queryDB($query, $db);
@@ -62,11 +60,14 @@
 <!-- if you have a site table, you'd get this from there -->
 <div class="row">
     <div class="col-xs-10">
-        
+    <div class="col-xs-3">
+        <a href="email.php">Send Email to Administrator</a>
+    </div>
     </div>
     <div class="col-xs-2">
         <a href="input.php">Edit site</a>
     </div>
+
 </div>
     
 <div class="row">
@@ -118,7 +119,6 @@
 <?php
     // use this boolean to check whether we are having this menu or not
     $leftSideMenuOn = false;
-
     // check if this page needs to display a left-side menu
     if ($parent > 0) {
         
