@@ -11,7 +11,6 @@
         //get data from form
         $id = $_POST['id'];
         $delete = $_POST['delete'];
-
         if ($delete == 'yes') {
             //connect to database
             $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
@@ -30,12 +29,10 @@
         header('Location: people.php');
         exit;
     }
-
     //connect to database
     $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);  
     // check if there is a GET variable
     
-
     // set up a query
     $id = $_GET['id'];
     $query = "SELECT * FROM person WHERE id=" . $id;
@@ -50,14 +47,12 @@
         exit;
         
     }
-
     
     $row = nextTuple($result);
     $firstName = $row['firstName'];
     $lastName = $row['lastName'];
     $email = $row['email'];
     $personType= $row['personType'];
-
 ?>
 
 <html>
@@ -104,7 +99,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <p>
-                    Do you want to delete personal information <?php echo $firstName . " " . $lastName; ?>?
+                    Are  you Sure you want to delete this Person? <?php echo $firstName . " " . $lastName; ?>?
                 </p>
             </div>
         </div>

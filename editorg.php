@@ -7,16 +7,13 @@
     
     if (isset($_POST['submit'])) {
         
-
         //get data from form
         $id = $_POST['id'];
         $orgName = $_POST['orgName'];
         $contactInfo = $_POST['contactInfo'];
         $adMininfo = $_POST['adMininfo'];
-
-
         //connect to database
-        $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
+    $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
         
         //check for required fields
         $isComplete = true;
@@ -37,8 +34,6 @@
         } else {
             $title = makeStringSafe($db, $contactInfo);
         }
-
-
         if (!$adMininfo) {
             $errorMessage .= " Please enter Adminstrator's Name";
             $isComplete = false;
@@ -46,8 +41,6 @@
             $title = makeStringSafe($db, $adMininfo);
         }
         
-
-
         if (!$isComplete) {
             //if there is a problem with the data send it back with error message
             header('Location: about.php?id=' . $id . '&errorMessage=' . $errorMessage);
@@ -55,7 +48,6 @@
         
         //check that there are no other records in the database with the same organization and contact info
         
-
         
         //check
         $query = "SELECT * FROM organization WHERE orgName='" .  $orgName . "' ADD contactInfo=" . $contactInfo .  " AND id!=". $id . ";";
@@ -90,7 +82,7 @@
     }
     
     //connect to database
-    $db = connectDB($DBHost, $DBUser, $DBPasswd, $DBName);
+    $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
     
     // set up a query
     $id = $_GET['id'];
@@ -181,8 +173,11 @@
     
     <input type="hidden" name="id" value="<?php echo $id; ?>"/>
     
-    <button type="submit" class="btn btn-default" name="submit">Add</button>
+    <button type="submit" class="btn btn-default" name="submit">Update</button>
 </form>
 
     </body>
 </html>
+<?php
+include_once("footer.php");
+?>

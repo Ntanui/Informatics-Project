@@ -7,52 +7,38 @@
 <?php
     include_once('config.php');
     include_once('dbutils.php');
+	include_once('header.php');
 ?>
 
 <html>
     <head>
-        <title>Sign Up!</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap/min.js"></script>
-        
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.theme.min.css">
-    </head>
-    <body>
-<div class="container" style="width: 1024px">
+<title> Enter Users. </title>
 
-<!-- if you have a site table, you'd get this from there -->
-        <div class="container" style="width: 1024px">
-        
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="page-header">
-                    <!-- Header -->
-                    <h1>Register</h1>
-                </div>
+<!-- Code from Bootsrap -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </head>
+           
+    <body>
+<!-- Visible Title -->
+        <div class = "row">
+            <div class = "col-xs-12">
+                <h1> Enter Users.</h1>
             </div>  
         </div>
-            
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="navbar navbar-inverse">
-                        <div class="container-fluid">
-                        <ul class="nav nav-pills">
-                            <li class="active"><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
-                            <li><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Edit Page</a></li>
-                            <li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
-                            <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
-                            <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
-                        </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-9 col-xs-12">
+        
+<!-- Processing form input -->        
+        <div class="row">
+            <div class= "col-xs-12">
+                
 <?php
 //
 // Code to handle input from the form
@@ -65,9 +51,9 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
     
-    if (!$db){       
+    if (!$db){
         // Connect to database
-        $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
+    $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
     }
     
     
@@ -172,7 +158,7 @@ if (isset($_POST['submit'])) {
     <!-- Headers for table -->
     <thead>
         <tr>
-            <th>Email list</th>
+            <th>Name</th>
         </tr>
     </thead>
     
@@ -180,7 +166,7 @@ if (isset($_POST['submit'])) {
 <?php
     if (!$db){
         // Connect to database
-        $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
+    $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
     }
     // Set up query to get all records from users table.
     $query = "SELECT * FROM account ORDER BY email;";
@@ -196,7 +182,6 @@ if (isset($_POST['submit'])) {
         echo "<td>" . $row['password2'] . "</td>" ;
         echo "</tr>";
     }
-
 ?>
     </tbody>   
 </table>
@@ -208,6 +193,3 @@ if (isset($_POST['submit'])) {
     </body>
     
 </html>
-<?php
-include_once("footer.php");
-?>

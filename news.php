@@ -47,7 +47,7 @@
                 <a href="index.php">View site</a>
                 <div class="row">
                     <div class="col-xs-12">
-                        <a href="site.php">Back to creating site</a>
+                        <a href="news.php">Back to Add News</a>
                     </div>
                 </div>
             </div>
@@ -147,13 +147,12 @@ if (isset($_POST['submit'])) {
 <!-- visible title-->
         <div class="row">
             <div class="col-xs-12">
-                <h1>Enter Name</h1>
             </div>
         </div>
         
         <div class="row">
             <div class="col-xs-12">
-                <form action= "inputuseers.php" method ="post">
+                <form action= "news.php" method ="post">
                 
                     
                 <!-- title -->

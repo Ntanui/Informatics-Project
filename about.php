@@ -85,20 +85,20 @@ if (isset($_POST['submit'])) {
     $errorMessage = "";
     
     if(!$orgName) {
-        $errorMessage .= "Please enter a Organization Name";
+        $errorMessage .= "Please enter the Organization's Name";
         $isComplete = false;
     } else {
         $orgName = makeStringSafe($db, $orgName);
     }
     
     if (!$contactInfo) {
-        $errorMessage .= " Please enter a Contact Information";
+        $errorMessage .= " Please enter web address Contact Information";
         $isComplete = false;
     } else {
         $contactInfo = makeStringSafe($db, $contactInfo);
     }
     if (!$adMininfo) {
-        $errorMessage .= " Please enter Administrator Name";
+        $errorMessage .= " Please enter the Administrator's Name";
         $isComplete = false;
     } else {
         $adMininfo = makeStringSafe($db, $adMininfo);
@@ -113,9 +113,9 @@ if (isset($_POST['submit'])) {
     $query = "SELECT * FROM organization WHERE orgName='" .  $orgName . "' AND contactInfo='" . $contactInfo . "' AND adMininfo='" . $adMininfo . "';";
     $result = queryDB($query, $db);
     if (nTuples($result) >  0) {
-        punt("Sorry. We already have a organization name called " . $orgName . " " . $contactInfo);
+        punt("Sorry. We already have a organization name called " . $orgName . " whose website is  " . $contactInfo);
     }
-    
+     
     //according to lecture, put together sql code to insert tuple or record
     $insert = "INSERT INTO organization (orgName, contactInfo ,adMininfo) VALUES ('" . $orgName . "', '" . $contactInfo . "', '" . $adMininfo . "');";
     
@@ -126,11 +126,6 @@ if (isset($_POST['submit'])) {
     //we have successfully inserted the record
     echo ("Successfully entered " . $orgName . " " . $contactInfo . " into the database.");
     
-    //maybe delete this line
-    //echo $insert;
-    
-    //echo ("Name: " . $name . ". Location: " . $location . ". URL: " . $url);
-    //until here maybe delete
 }
 ?>
 

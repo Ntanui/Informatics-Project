@@ -1,6 +1,6 @@
-<!-- This file enables users to login into the system -->
+<!-- This file provides input capabilities into a table of Users -->
 <!--It also lists the contents of the table -->
-<!-- Ir uses Bootsrap for formatting-->
+<!-- It uses Bootsrap for formatting-->
 <!--Norman K. Tanui-->
 
 
@@ -9,6 +9,7 @@
     include_once('dbutils.php');
 
 ?>
+
 <html>
     <head>
 
@@ -65,7 +66,6 @@
         
         <div class="row">
             <div class="col-sm-9 col-xs-12">
-
 <?php
 
 //
@@ -77,6 +77,8 @@ if (isset($_POST['submit'])) {
     //Get data from the form
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $password2 = $_POST['password2'];
+
     
     if (!$db){
         // Connect to database
@@ -100,44 +102,46 @@ if (isset($_POST['submit'])) {
         $isComplete = false ;   
     }  
             
+    if (!$password2)  {
+        $errorMessage .= "Please Re-enter your password.";
+        $isComplete = false ;   
+    }
+    
+    if ($password !=$password2) {
+        $errorMessage.= "Sorry, your passwords do not match.";
+        $isComplete =false;
+        
+    }   
              
     if (!isComplete) {
         punt ($errorMessage);
     }
     
       
-    //Get the hashed password from the user whose email was entered.
-    $query= " SELECT * FROM account WHERE email = '" . $email . "';";
+    //check if there's a user with the same email
+    $query= " SELECT * FROM users WHERE email = '" . $email . "';";
     $result=  queryDB($query, $db);
     if (nTuples ($result) > 0 ) {
-        // There is an account that corresponds with the email entered by the user
-        //Get the hashed password for that account.
-        $row = nextTuple($result);
-        $hashedpass = $row['hashedpass'];
-        
-        //Compare entered password to the password on the database.
-        if ($hashedpass == crypt($password, $hashedpass)) {
-            //If we are here, we know the password was entered correcty.
-            
-            //Start a session
-            if (session_start()) {
-                $_SESSION['email'] = $email;
-                header('location:sitebuild.php');
-                exit;
-            } else  {
-                // If we cannot start a session
-                punt ("Unable to Sart session while logging in.");
-                
-            }
-        } else {
-            punt ("Wrong Password. <a href = 'login.php'> Try again. </a>.");
-        }
+        // This means a director with the same email.
+        punt ("Sorry we have already have user with the email " . $email );
    
-    } else{
-        // Email entered is not in the account table.
-        punt("Sorry,this email address is not in our database. <a href = 'login.php'>Try again</a>.");
-    }   
-}
+    }
+    
+    //Generate the hashed version of the password
+    $hashedpass = crypt($password, getSalt());
+    
+    // Sql code to insert tuple or record
+    $insert = "INSERT INTO users(email,hashedpass) VALUES ('" . $email . "' , '" . $hashedpass . "');";
+    
+    
+    //run the insert statement
+    $result = queryDB($insert, $db);
+    
+    //If no errors, record has been succesfully Inserted.
+    
+    echo ("Succesfully entered" . $email."in the Users Database");
+    
+        }
            
 ?>
       
@@ -148,7 +152,7 @@ if (isset($_POST['submit'])) {
         <div class ="row">
              <div class = "col-xs-12">
                                  
-<form action= "sitebuild.php" method ="post">
+<form action= "inputusers.php" method ="post">
     
 <!-- Email -->
     <div class="form-group">
@@ -164,17 +168,59 @@ if (isset($_POST['submit'])) {
     </div
          
 <!-- Password 2 -->
+    <div class="form-group">
+        <label for="password2"> Re-enter Password </label>
+        <input type="password" class="form-control" name ="password2"/>
+    </div>
         
-    <button type="submit" class="btn btn-default" name ="submit">Login</button>
+    <button type="submit" class="btn btn-default" name ="submit">Add</button>
 </form>
                 
             </div>
         </div>
-               
-</div>
+<!-- Table to show contents of database -->
 
-<!-- Footer Bar -->
-<?php include_once ("footer.php"); ?>
+<div class = "row">
+    <div class ="col-xs-12">
+<table class = "table table-hover">
+    
+    <!-- Headers for table -->
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+<?php
+
+    if (!$db){
+        // Connect to database
+        $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
+    }
+
+    // Set up query to get all records from users table.
+    $query = "SELECT * FROM users ORDER BY email;";
+    
+    //Run the query
+    $result = queryDB($query, $db);
+    
+    while($row = nextTuple($result)){
+        //Each time the while loop runs,we create one row in the table.
+        echo "\n <tr>";
+        echo "<td>" . $row['email'] ."</td>" ;
+        echo "<td>" . $row['password'] . "</td>" ;
+        echo "<td>" . $row['password2'] . "</td>" ;
+        echo "</tr>";
+    }
+
+?>
+    </tbody>   
+</table>
+        
+    </div>
+    
+</div>
         
     </body>
     

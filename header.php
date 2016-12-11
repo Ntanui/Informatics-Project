@@ -40,14 +40,22 @@
 									echo('class="active"');
 								}
 								?>
-							><a href="index.php"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a></li>
-                          	<li <?php
-								if($menuHighlight == 1)
-								{
-									echo('class="active"');
-								}
-								?>
-							><a href="dogepic.php"><span class="glyphicon glyphicon-user"></span>&nbsp; Administrator</a></li>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="navbar navbar-inverse">
+											<div class="container-fluid">
+											<ul class="nav nav-pills">
+												<li><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
+												<li class="active"><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Create Site</a></li>
+												<li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
+												<li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
+												<li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+											</ul>
+											</div>
+										</div>
+									</div>
+								</div>                     
+							</li>
                         </ul>
                     </div>
                 </div>
