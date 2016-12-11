@@ -249,8 +249,8 @@ if (isset($_POST['submit'])) {
         echo "<td>" . $row['firstName'] . " " . $row['lastName'] . "</td>";
         echo "<td>" . $row['email'] . "</td>";
         echo "<td>" . $row['personType'] . "</td>";
-        echo "<td><a href='update 1.php?id=" . $row['id'] . "'>edit</a></td>";
-        echo "<td><a href='delete 1.php?id=" . $row['id'] . "'>delete</a></td>";
+        echo "<td><a href='editpeople.php?id=" . $row['id'] . "'>edit</a></td>";
+        echo "<td><a href='delete.php?id=" . $row['id'] . "'>delete</a></td>";
         echo "</tr>";
     }
 ?>

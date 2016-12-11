@@ -207,8 +207,8 @@ if (isset($_POST['submit'])) {
         echo "<td>" . $row['orgName'] . "</td>";
         echo "<td>" . $row['contactInfo'] . "</td>";
         echo "<td>" . $row['adMininfo'] . "</td>";
-        echo "<td><a href='edit.php?id=" . $row['id'] . "'>edit</a></td>";
-        echo "<td><a href='delete.php?id=" . $row['id'] . "'>delete</a></td>";
+        echo "<td><a href='editorg.php?id=" . $row['id'] . "'>edit</a></td>";
+        echo "<td><a href='deleteorg.php?id=" . $row['id'] . "'>delete</a></td>";
         echo "</tr>";
     }
 ?>

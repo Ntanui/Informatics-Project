@@ -90,7 +90,7 @@
     if ($result) {
         echo "Page edited";
     } else {
-        echo "soemthing bad happened with the query. " . $db->error . " This was the query: " . $updateQuery;    
+        echo "something bad happened with the query. " . $db->error . " This was the query: " . $updateQuery;    
     }
     
 ?>

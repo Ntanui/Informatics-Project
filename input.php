@@ -137,6 +137,8 @@
         <textarea class="form-control" name="body" rows="5"></textarea>
     </div>
     
+    <button type="submit" class="btn btn-default">Add</button>
+    
     <div class="form-group">
         <label for="body">Edit Page</label>
             <form>
@@ -145,9 +147,9 @@
                 <h5>None</h5>
                 <button id="img-insert-btn"><a href="input.php">Select</a></button>
                 <h5>Home</h5>
-                <button id="img-insert-btn"><a href="about.php">Select</a></button>
+                <button id="img-insert-btn"><a href="editorg.php">Select</a></button>
                 <h5>List of People</h5>
-                <button id="img-insert-btn"><a href="people.php">Select</a></button>
+                <button id="img-insert-btn"><a href="editpeople.php">Select</a></button>
                 <h5>News</h5>
                 <button id="img-insert-btn"><a href="news.php">Select</a></button>
                 <h5>Calendar</h5>
@@ -156,7 +158,7 @@
     </div>
 
     
-    <button type="submit" class="btn btn-default">Add</button>
+    <button type="submit" class="btn btn-default">Update</button>
     <p>
         <br/>
     </p>
@@ -276,7 +278,7 @@
     function deleteRecord(id, name) {
         // delete record from pages table identified by id, if user agrees
         var decision = confirm("Would you like to delete " + name + "?");
-        if (decision == true) {
+        if (decision === true) {
             var xmlhttp = new XMLHttpRequest();
             
             // this part of code receives a response from deleteperson.php 
@@ -288,7 +290,7 @@
                         alert("Unsuccessful delete: " + xmlhttp.responseText);
                     }
                 }
-            }
+            };
             
             // this sends the data request to deleteperson.php
             xmlhttp.open("POST", "deletepage.php", true);
@@ -298,7 +300,7 @@
     }
     
     // pop up a form to edit a record that provides option to cancel or save changes
-    function editRecord(id, urlTitle, pageTitle, menuTitle, bodyTitle, body, parent) {
+    function editrecord(id, urlTitle, pageTitle, menuTitle, bodyTitle, body, parent) {
         document.getElementById("editurlTitle").value = urlTitle;
         document.getElementById("editpageTitle").value = pageTitle;
         document.getElementById("editbodyTitle").value = bodyTitle;
@@ -337,7 +339,7 @@
                                 location.reload();
                             }
                         }
-                    }
+                    };
                                       
                     // this sends the data request to deleteperson.php
                     xmlhttp.open("POST", "editpage.php", true);
@@ -362,7 +364,7 @@
             }
         }
                              
-                             )
+                             );
     
     
 </script>
