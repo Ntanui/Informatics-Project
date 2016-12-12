@@ -70,7 +70,7 @@
             <div class="col-xs-12">
                 <div class="page-header">
                     <!-- Header -->
-                    <h1>Edit Organization</h1>
+                    <h1>Add an Organization</h1>
                     <a href="index.php">View site</a>
                     <div class="row">
                         <div class="col-xs-12">
@@ -127,7 +127,7 @@ if (isset($_POST['submit'])) {
     }
     
     if (!$contactInfo) {
-        $errorMessage .= " Please enter web address Contact Information";
+        $errorMessage .= " Please enter web address";
         $isComplete = false;
     } else {
         $contactInfo = makeStringSafe($db, $contactInfo);
@@ -189,12 +189,12 @@ if (isset($_POST['submit'])) {
                                     
                 <div class="col-sm-3 col-xs-12">
                     
-                    <div class="palen panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                         Welcome
                         </div>
                         <div class="panel-body">
-                            Please edit the organization information
+                            Please Add organization.
                         </div>
                     </div>
                 </div>

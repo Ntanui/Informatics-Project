@@ -56,53 +56,6 @@
     
 </head>
 
-    <style>
-    input[type=text], select {
-        width: 100%;
-        padding: 12px 10px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    
-    input[type=submit] {
-        width: 100%;
-        background-color: #2E9AFE;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    
-    input[type=reset] {
-        width: 100%;
-        background-color: #2E9AFE;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    
-    input[type=submit]:hover {
-        background-color: #2E9AFE;
-    }
-    input[type=reset]:hover {
-        background-color: #2E9AFE;
-    }
-    
-    div {
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        padding: 2px;
-    }
-    </style>
-
 <body>
 <div class="container" style="width: 1024px">
 
@@ -124,7 +77,7 @@
     <div class="col-xs-12">
         <div class="page-header">
             <!-- Header -->
-            <h1>Create Site</h1>
+            <h1></h1>
             <a href="index.php">View site</a>
             <div class="row">
                 <div class="col-xs-12">
@@ -184,24 +137,13 @@
         <textarea class="form-control" name="body" rows="5"></textarea>
     </div>
     
-    <div class="form-group">
-        <label for="body">Edit Page</label>
-            <form>
-            </form>
-            <form>
-                <h5>None</h5>
-                <button id="img-insert-btn"><a href="input.php">Select</a></button>
-                <h5>Home</h5>
-                <button id="img-insert-btn"><a href="about.php">Select</a></button>
-                <h5>List of People</h5>
-                <button id="img-insert-btn"><a href="people.php">Select</a></button>
-                <h5>News</h5>
-                <button id="img-insert-btn"><a href="news.php">Select</a></button>
-                <h5>Calendar</h5>
-                <button id="img-insert-btn"><a href="calendar.php">Select</a></button>
-            </form> 
-    </div>
 
+    <div class="form-group">
+        <input type="radio" name="pageType" value="None" checked> None<br>
+      <input type="radio" name="pageType" value="People"> People<br>
+        <input type="radio" name="pageType" value="News"> News<br>
+        <input type="radio" name="pageType" value="Calendar"> Calendar
+    </div>
     
     <button type="submit" class="btn btn-default">Add</button>
     <p>
@@ -323,7 +265,7 @@
     function deleteRecord(id, name) {
         // delete record from pages table identified by id, if user agrees
         var decision = confirm("Would you like to delete " + name + "?");
-        if (decision == true) {
+        if (decision === true) {
             var xmlhttp = new XMLHttpRequest();
             
             // this part of code receives a response from deleteperson.php 
@@ -335,7 +277,7 @@
                         alert("Unsuccessful delete: " + xmlhttp.responseText);
                     }
                 }
-            }
+            };
             
             // this sends the data request to deleteperson.php
             xmlhttp.open("POST", "deletepage.php", true);
@@ -384,7 +326,7 @@
                                 location.reload();
                             }
                         }
-                    }
+                    };
                                       
                     // this sends the data request to deleteperson.php
                     xmlhttp.open("POST", "editpage.php", true);
@@ -409,7 +351,7 @@
             }
         }
                              
-                             )
+                             );
     
     
 </script>

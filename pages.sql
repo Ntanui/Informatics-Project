@@ -40,7 +40,6 @@ CREATE TABLE news (
 	id INT NOT NULL AUTO_INCREMENT,
 	newsTitle VARCHAR(32) NOT NULL, /* shown as the title on the list of news */
 	timePost VARCHAR(32) NOT NULL, /* time the news posted */
-	preview VARCHAR(255), /* short preview content to show on the list */
 	PRIMARY KEY (id)
 );
 
@@ -71,3 +70,4 @@ CREATE TABLE img (
 INSERT INTO person (firstName, lastName, email, personType) VALUES ("JP", "PN", "whoever@uiowa.edu",  "member");
 INSERT INTO pages (urlTitle, pageTitle, menuTitle, parent, bodyTitle, body) VALUES ("home", "Home - Iowa Bikers", "home", -1, "Welcome to the Iowa Bikers's Club", "Bikes and fun.");
 INSERT INTO organization(orgName,contactInfo,adMininfo) VALUES ("Iowa Bikers Club","Iowabikers.com", "Admin@iowabikers.com");
+

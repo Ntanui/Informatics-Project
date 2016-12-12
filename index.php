@@ -13,7 +13,7 @@
     // get a handle to the database
     $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
 
-    $query = "select id, pageTitle, menuTitle, parent, bodyTitle, body from pages where urlTitle='" . $urlTitle . "'";
+    $query = "select id, pageTitle, menuTitle, parent, bodyTitle, body, pageType from pages where urlTitle='" . $urlTitle . "'";
     
     $result = queryDB($query, $db);
     if ($result) {
@@ -27,6 +27,7 @@
             $parent = $row['parent'];
             $bodyTitle = $row['bodyTitle'];
             $body = $row['body'];
+            $pageType = $row['pageType'];
         } else {
         punt("Something went wrong when retrieving pages from the database.<p>" .
                           "This was the error: " . $db->error . "<p>", $query);
@@ -210,6 +211,59 @@
         <p>
            <?php echo $body; ?>
         </p>
+        <?php
+// render something different depending on pageType
+if ($pageType=='People') {
+    echo '<p>People</p>';
+    // write php code to show a list of people that you entered in the database
+    echo '<table class="table table-hover">
+    
+    <!-- headers for table -->
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+    
+    <tbody>';
+    
+if (!$db) {
+        // connect to the database
+        $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
+    }
+    
+    //set up query to records from the table
+    // ******** I was not sure about this ********
+    $query="SELECT * FROM person ORDER BY lastName;";
+    
+    //run the query
+    $result = queryDB($query, $db);
+    while($row = nextTuple($result)) {
+        // in the lecture, each time the while loop runs we create one row in the table
+        echo "\n <tr>";
+        echo "<td>" . $row['firstName'] . " " . $row['lastName'] . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['personType'] . "</td>";
+        echo "</tr>";
+    }
+    
+    echo '    </tbody>
+</table>';
+    
+} elseif ($pageType=='News') {
+    echo '<p>News</p>';
+    // php code to show all the news (headline + text)
+    
+    // query database to get all news
+    
+    // use a  loop to echo each headline and text 
+    
+} elseif ($pageType=='Calendar') {
+    echo $caLendar;
+}   
+        ?>
 
     </div> <!-- close content area of page-->
 </div>
