@@ -9,27 +9,95 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.theme.min.css">
     </head>
+    <style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=reset] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+        background-color: #2E9AFE;
+    }
+    input[type=reset]:hover {
+        background-color: #2E9AFE;
+    }
+    
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 2px;
+    }
+    </style>
+    
     <body>
-        <div class="container">
-            
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="page-header">
-                    <h1>Calendar</h1>
-                    </div>
-                </div> 
+        <div class="container" style="width: 1024px">
+        
+        <!-- if you have a site table, you'd get this from there -->
+        <div class="row">
+            <div class="col-xs-10">
+                
             </div>
+            <div class="col-xs-2">
+                <a href="login.php">Log In</a>
+                <a>or</a>
+                <a href="login.php">Log Out</a>
+            </div>
+        </div>
             
+        <div class="container" style="width: 1024px">
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-header">
+                    <!-- Header -->
+                    <h1>Calendar</h1>
+                    <a href="index.php">View site</a>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a href="input.php">Back to creating site</a>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
             <div class="row">
                 <div class="col-xs-12">
                     <div class="navbar navbar-inverse">
                         <div class="container-fluid">
                         <ul class="nav nav-pills">
-                            <li class="active"><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
+                            <li><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
                             <li><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Edit Page</a></li>
                             <li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
                             <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
-                            <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+                            <li class="active"><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
                         </ul>
                         </div>
                     </div>

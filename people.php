@@ -19,6 +19,52 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         
     </head>
+    <style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=reset] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+        background-color: #2E9AFE;
+    }
+    input[type=reset]:hover {
+        background-color: #2E9AFE;
+    }
+    
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 2px;
+    }
+    </style>
     
     <body>
 
@@ -193,8 +239,9 @@ if (isset($_POST['submit'])) {
         <input type="text" class="form-control" name="personType"/>
     </div>
     
-    
-    <button type="submit" class="btn btn-default" name="submit">Add</button>
+    <div class="form-group">
+        <input type="submit" name="submit"></input>
+    </div>
 </form>            
                 
                 

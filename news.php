@@ -1,9 +1,3 @@
-<!-- This file provides input capabilities into a table of Users -->
-<!--It also lists the contents of the table -->
-<!-- It uses Bootsrap for formatting-->
-<!--Norman K. Tanui-->
-
-
 <?php
     include_once('config.php');
     include_once('dbutils.php');
@@ -23,6 +17,54 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.theme.min.css">
     </head>
+    
+    <style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=reset] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+        background-color: #2E9AFE;
+    }
+    input[type=reset]:hover {
+        background-color: #2E9AFE;
+    }
+    
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 2px;
+    }
+    </style>
+    
     <body>
 <div class="container" style="width: 1024px">
 
@@ -90,7 +132,6 @@ if (isset($_POST['submit'])) {
     //Get data from the form
     $newsTitle = $_POST['newsTitle'];
     $timePost = $_POST['timePost'];
-    $preview = $_POST['preview'];
     
     if (!$db){
         // Connect to database
@@ -102,17 +143,19 @@ if (isset($_POST['submit'])) {
     $isComplete = true;
     $errorMessage = "";
     
-    if (!$email) {
+    if (!$newsTitle) {
         $errorMessage .= "Please enter a news item Headline.";
         $isComplete = false ;   
     }   else {
-            $email = makeStringsafe($db, $email);
+            $newsTitle = makeStringsafe($db, $newsTitle);
     }
         
-    if (!$password) {
+    if (!$timePost) {
         $errorMessage .= "Please enter your news post .";
-        $isComplete = false ;   
-    }  
+        $timePost = false ;   
+    }   else {
+            $timePost = makeStringsafe($db, $timePost);
+    } 
               
              
     if (!isComplete) {
@@ -121,7 +164,7 @@ if (isset($_POST['submit'])) {
     
       
     //check if there's a user with the same email
-    $query= " SELECT * FROM news WHERE newsTitle = '" . $newsTitle . "';";
+    $query= " SELECT * FROM news WHERE newsTitle = '" . $newsTitle . "' AND '" . $timePost . "';";
     $result=  queryDB($query, $db);
     if (nTuples ($result) > 0 ) {
         // This means a director with the same email.
@@ -168,7 +211,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 
                         
-                    <button type="submit" class="btn btn-default col-xs-12" name ="submit">Post</button>
+                    <input type="submit" name="submit"></input>
                     
                 </form>
             </div>
@@ -201,7 +244,6 @@ if (isset($_POST['submit'])) {
         echo "\n <tr>";
         echo "<td>" . $row['newsTitle'] ."</td>" ;
         echo "<td>" . $row['timePost'] . "</td>" ;
-        echo "<td>" . $row['preview'] . "</td>" ;
         echo "</tr>";
     }
 ?>
