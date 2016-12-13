@@ -205,12 +205,22 @@ if (isset($_POST['submit'])) {
             
             <div class="col-sm-3 col-xs-12">                             
                 <div class="palen panel-default">
-                    <div class="panel-heading">
-                    Adding Organization
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    <body>
+                    
+                    <div class="w3-container">
+                      <h1>Stay Simple!</h1>
+                    
+                      <div class="w3-panel w3-card-4 w3-light-grey" style="width:100%">
+                        <p class=" w3-large w3-serif">
+                        <i class="fa fa-quote-right w3-xxlarge w3-text-red"></i><br>
+                        You are able to create your own organization website by simply entering the name and website. This is a great way to modify or delete the information instantly</p>
+                      </div>
                     </div>
-                    <div class="panel-body">
-                        Please enter the name of the organiztion and contact information and click submit
-                    </div>
+                    
+                    </body>
                 </div>
             </div>
         </div>
@@ -224,7 +234,7 @@ if (isset($_POST['submit'])) {
     
     <!-- headers gor table -->
     <thead>
-        <tr>
+        <tr class="w3-green">
             <th>Organization Name</th>
             <th>Web Address</th>
             <th> </th>
