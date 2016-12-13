@@ -200,14 +200,14 @@ if (isset($_POST['submit'])) {
                     
                 <!-- title -->
                     <div class="form-group">
-                        <label for="email"> Newstitle </label>
+                        <label for="newsTitle"> Newstitle </label>
                         <input type="text" class="form-control" name ="newstitle"/>
                     </div>
                     
                 <!-- news -->
                     <div class="form-group">
-                        <label for=""> Article </label>
-                        <textarea class="form-control" name="editbody" id="editbody" rows="10"></textarea>
+                        <label for="timePost"> Article </label>
+                        <input <textarea class="form-control" name="timePost" rows="10"></textarea>
                     </div>
                 
                         
@@ -225,7 +225,13 @@ if (isset($_POST['submit'])) {
 <table class = "table table-hover">
     
     <!-- Headers for table -->
-
+    <thead>
+        <tr>
+            <th>News Title</th>
+            <th>Time Post</th>
+            <th> </th>
+        </tr>
+    </thead>
     
     <tbody>
 <?php
@@ -245,6 +251,7 @@ if (isset($_POST['submit'])) {
         echo "<td>" . $row['newsTitle'] ."</td>" ;
         echo "<td>" . $row['timePost'] . "</td>" ;
         echo "</tr>";
+
     }
 ?>
     </tbody>   
