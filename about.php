@@ -6,16 +6,19 @@
 
 <html>
     <head>
-        <title>Organization</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enter Organization</title>
+<!-- this is the code from bootstrap -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap/min.js"></script>
-        
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.theme.min.css">
     </head>
-    
     <style>
     input[type=text], select {
         width: 100%;
@@ -38,8 +41,21 @@
         cursor: pointer;
     }
     
+    input[type=reset] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
     
     input[type=submit]:hover {
+        background-color: #2E9AFE;
+    }
+    input[type=reset]:hover {
         background-color: #2E9AFE;
     }
     
@@ -51,6 +67,7 @@
     </style>
     
     <body>
+
 <div class="container" style="width: 1024px">
 
 <!-- if you have a site table, you'd get this from there -->
@@ -64,42 +81,40 @@
         <a href="login.php">Log Out</a>
     </div>
 </div>
-        <div class="container" style="width: 1024px">
+
+    <div class="container" style="width: 1024px">
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-header">
+                <!-- Header -->
+                <h1>Welcome! Please add an Organization</h1>
+                <a href="index.php">View site</a>
+            </div>
+        </div>  
+    </div>
         
+
+            
         <div class="row">
             <div class="col-xs-12">
-                <div class="page-header">
-                    <!-- Header -->
-                    <h1>Add an Organization</h1>
-                    <a href="index.php">View site</a>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <a href="site.php">Back to creating site</a>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-        </div>
-            
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="navbar navbar-inverse">
-                        <div class="container-fluid">
-                        <ul class="nav nav-pills">
-                            <li class="active"><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
-                            <li><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Edit Page</a></li>
-                            <li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
-                            <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
-                            <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
-                        </ul>
-                        </div>
+                <div class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
+                        <li><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Edit Page</a></li>
+                        <li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
+                        <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
+                        <li><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
+                    </ul>
                     </div>
                 </div>
             </div>
+        </div>
             
-            <div class="row">
-                <div class="col-sm-9 col-xs-12">
-                    
+        
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
                 
 <?php
 //
@@ -132,27 +147,20 @@ if (isset($_POST['submit'])) {
     } else {
         $contactInfo = makeStringSafe($db, $contactInfo);
     }
-    if (!$adMininfo) {
-        $errorMessage .= " Please enter the Administrator's Name";
-        $isComplete = false;
-    } else {
-        $adMininfo = makeStringSafe($db, $adMininfo);
-    }
      
     if (!$isComplete) {
         punt($errorMessage);
     }
     
     
-    //check
-    $query = "SELECT * FROM organization WHERE orgName='" .  $orgName . "' AND contactInfo='" . $contactInfo . "' AND adMininfo='" . $adMininfo . "';";
+    $query = "SELECT * FROM organization WHERE orgName='" .  $orgName . "' AND contactInfo='" . $contactInfo . "';";
     $result = queryDB($query, $db);
     if (nTuples($result) >  0) {
         punt("Sorry. We already have a organization name called " . $orgName . " whose website is  " . $contactInfo);
     }
      
     //according to lecture, put together sql code to insert tuple or record
-    $insert = "INSERT INTO organization (orgName, contactInfo ,adMininfo) VALUES ('" . $orgName . "', '" . $contactInfo . "', '" . $adMininfo . "');";
+    $insert = "INSERT INTO organization (orgName, contactInfo) VALUES ('" . $orgName . "', '" . $contactInfo . "');";
     
     
     //run the insert statement
@@ -163,46 +171,53 @@ if (isset($_POST['submit'])) {
     
 }
 ?>
-
-                    <p>Edit Organization</p>
-                    
-                    <form action="about.php" method="post">
-                        
-                        <div class="form-group">
-                            <label for="title">Organization Name</label>
-                            <input type="text" class="form-control" name="title"/>
-                        </div>
-            
-                        <div class="form-group">
-                            <label for="artice">Contact Information</label>
-                            <input type="text" class="form-control" name="article"/>
-                        </div>
-                       
-                        <div class="form-group">
-                            <label for="link">Administrator Name</label>
-                            <input type="text" class="form-control" name="link"/>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-default" name="submit">Add</button>
-                    </form>
-                </div>
-                                    
-                <div class="col-sm-3 col-xs-12">
-                    
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                        Welcome
-                        </div>
-                        <div class="panel-body">
-                            Please Add organization.
-                        </div>
-                    </div>
-                </div>
-                 
             </div>
             
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
+
+                
+<!-- change the name of the file -->
+<form action="about.php" method="post">
+<!-- first name -->
+    <div class="form-group">
+        <label for="orgName">Organization Name</label>
+        <input type="text" class="form-control" name="orgName"/>
+    </div>
+
+<!-- last name -->
+    <div class="form-group">
+        <label for="contactInfo">Web Address</label>
+        <input type="text" class="form-control" name="contactInfo"/>
+    </div>
+
+ 
+    
+    <div class="form-group">
+        <input type="submit" name="submit"></input>
+    </div>
+</form>            
+                
+                
+            </div>
             
-            <!-- table to show contents-->     
+            <div class="col-sm-3 col-xs-12">                             
+                <div class="palen panel-default">
+                    <div class="panel-heading">
+                    Adding Organization
+                    </div>
+                    <div class="panel-body">
+                        Please enter the name of the organiztion and contact information and click submit
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+   
+<!-- table to show contents-->     
 <div class="row">
     <div class="col-xs-12">
 <table class="table table-hover">
@@ -211,8 +226,7 @@ if (isset($_POST['submit'])) {
     <thead>
         <tr>
             <th>Organization Name</th>
-            <th>Contact Information</th>
-            <th>Admnistrator Information</th>
+            <th>Web Address</th>
             <th> </th>
         </tr>
     </thead>
@@ -236,7 +250,6 @@ if (isset($_POST['submit'])) {
         echo "\n <tr>";
         echo "<td>" . $row['orgName'] . "</td>";
         echo "<td>" . $row['contactInfo'] . "</td>";
-        echo "<td>" . $row['adMininfo'] . "</td>";
         echo "<td><a href='editorg.php?id=" . $row['id'] . "'>edit</a></td>";
         echo "<td><a href='deleteorg.php?id=" . $row['id'] . "'>delete</a></td>";
         echo "</tr>";
@@ -248,23 +261,11 @@ if (isset($_POST['submit'])) {
         
     </div>
 </div> 
-            
-            
-            
-            <div class="row">
-                <div class="col-xs-12">
-                    
-                    <div class="panel panel-default">
-                        <div class="panel panel-body">
-                            Administrator contact information: something@uiowa.edu
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div> 
         
-    
+        
+        
     </body>
-
 </html>
+<?php
+include_once("footer.php");
+?>
