@@ -296,7 +296,6 @@ if (isset($_POST['submit'])) {
         echo "<td>" . $row['firstName'] . " " . $row['lastName'] . "</td>";
         echo "<td>" . $row['email'] . "</td>";
         echo "<td>" . $row['personType'] . "</td>";
-        echo "<td><a href='editpeople.php?id=" . $row['id'] . "'>edit</a></td>";
         echo "<td><a href='deletepeople.php?id=" . $row['id'] . "'>delete</a></td>";
         echo "</tr>";
     }
