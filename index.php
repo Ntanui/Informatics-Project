@@ -255,10 +255,35 @@ if (!$db) {
 } elseif ($pageType=='News') {
     echo '<p>News</p>';
     // php code to show all the news (headline + text)
+    echo '<table class="table table-hover">
+    
+    <!-- headers for table -->
+    <thead>
+        <tr>
+            <th>News Title</th>
+            <th>Article</th>
+        </tr>
+    </thead>
+    
+    <tbody>';
     
     // query database to get all news
     
-    // use a  loop to echo each headline and text 
+        $query="SELECT * FROM news ORDER BY newsTitle;";
+    
+    // use a  loop to echo each headline and text
+        //run the query
+    $result = queryDB($query, $db);
+    while($row = nextTuple($result)) {
+        // in the lecture, each time the while loop runs we create one row in the table
+        echo "\n <tr>";
+        echo "<td>" . $row['newsTitle'] . " ";
+        echo "<td>" . $row['timePost'] . "</td>";
+        echo "</tr>";
+    }
+    
+    echo '    </tbody>
+</table>';
     
 } elseif ($pageType=='Calendar') {
     echo $caLendar;
@@ -268,19 +293,10 @@ if (!$db) {
     </div> <!-- close content area of page-->
 </div>
 
-<!-- This is the footer -->
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <?php echo $footerText; ?>
-                </div>
-            </div>
-        </div>        
-    </div>
+
 
 <!-- close container div -->
-</div>
+
 
 </body>
 </html>
@@ -288,3 +304,7 @@ if (!$db) {
 <?php
     $db->close();
 ?>
+<?php
+include_once('footer.php');
+?>
+</div>
