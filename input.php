@@ -69,7 +69,7 @@
     
     input[type=submit] {
         width: 100%;
-        background-color: #2E9AFE;
+        background-color: #5b87ff;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
@@ -90,7 +90,7 @@
     }
     
     input[type=submit]:hover {
-        background-color: #2E9AFE;
+        background-color: #5b87ff;
     }
     input[type=reset]:hover {
         background-color: #2E9AFE;
@@ -98,10 +98,17 @@
     
     div {
         border-radius: 5px;
-        background-color: #f2f2f2;
+        background-color: #eaf3ff;
         padding: 2px;
     }
     </style>
+
+
+<style>
+body {
+    background-color: #eaf3ff;
+}
+</style>
 
 <body>
 <div class="container" style="width: 1024px">
@@ -176,7 +183,7 @@
     
     <div class="form-group">
         <label for="body">Body</label>
-        <textarea class="form-control" name="body" rows="5"></textarea>
+        <textarea type="text" class="form-control" name="body" rows="5"></textarea>
     </div>
     
 

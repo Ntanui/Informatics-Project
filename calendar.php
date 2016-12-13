@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.theme.min.css">
     </head>
     <style>
+    <style>
     input[type=text], select {
         width: 100%;
         padding: 12px 10px;
@@ -22,7 +23,7 @@
     
     input[type=submit] {
         width: 100%;
-        background-color: #2E9AFE;
+        background-color: #5b87ff;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
@@ -43,7 +44,7 @@
     }
     
     input[type=submit]:hover {
-        background-color: #2E9AFE;
+        background-color: #5b87ff;
     }
     input[type=reset]:hover {
         background-color: #2E9AFE;
@@ -51,10 +52,17 @@
     
     div {
         border-radius: 5px;
-        background-color: #f2f2f2;
+        background-color: #eaf3ff;
         padding: 2px;
     }
     </style>
+
+
+<style>
+body {
+    background-color: #eaf3ff;
+}
+</style>
     
     <body>
         <div class="container" style="width: 1024px">
@@ -89,7 +97,7 @@
                         <div class="container-fluid">
                         <ul class="nav nav-pills">
                             <li><a href="about.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Organization</a></li>
-                            <li><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Edit Page</a></li>
+                            <li><a href="input.php"><span class="glyphicon glyphicon-flag"></span> &nbsp; Create Site</a></li>
                             <li><a href="people.php"><span class="glyphicon glyphicon-user"></span> &nbsp; People</a></li>
                             <li><a href="news.php"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; News</a></li>
                             <li class="active"><a href="calendar.php"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Calendar</a></li>
