@@ -11,6 +11,7 @@
         //get data from form
         $id = $_POST['id'];
         $delete = $_POST['delete'];
+
         if ($delete == 'yes') {
             //connect to database
             $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
@@ -29,10 +30,12 @@
         header('Location: about.php');
         exit;
     }
+
     //connect to database
     $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);  
     // check if there is a GET variable
     
+
     // set up a query
     $id = $_GET['id'];
     $query = "SELECT * FROM organization WHERE id=" . $id;
@@ -47,18 +50,18 @@
         exit;
         
     }
+
     
     $row = nextTuple($result);
-    $firstName = $row['firstName'];
-    $lastName = $row['lastName'];
-    $email = $row['email'];
-    $personType= $row['personType'];
+    $orgName = $row['orgName'];
+    $contactInfo = $row['contactInfo'];
+
 ?>
 
 <html>
     <head>
 
-<title>Delete an Organization</title>
+<title>Delete Organization Information</title>
 
 <!-- this is the code from bootstrap -->
 <!-- Latest compiled and minified CSS -->
@@ -78,7 +81,7 @@
 <!-- visible title-->
         <div class="row">
             <div class="col-xs-12">
-                <h1>Delete an Organization</h1>
+                <h1>Delete Organization Information</h1>
             </div>
         </div>
         
@@ -99,8 +102,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <p>
-                    
-                    <h3>Are  you Sure you want to delete this Organization?</h3> <?php echo $orgName . " " . $contactInfo; ?>
+                    Do you want to delete organization information <?php echo $orgName . " " . $contactInfo; ?>?
                 </p>
             </div>
         </div>

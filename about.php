@@ -250,7 +250,6 @@ if (isset($_POST['submit'])) {
         echo "\n <tr>";
         echo "<td>" . $row['orgName'] . "</td>";
         echo "<td>" . $row['contactInfo'] . "</td>";
-        echo "<td><a href='editorg.php?id=" . $row['id'] . "'>edit</a></td>";
         echo "<td><a href='deleteorg.php?id=" . $row['id'] . "'>delete</a></td>";
         echo "</tr>";
     }
