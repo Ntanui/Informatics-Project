@@ -56,6 +56,53 @@
     
 </head>
 
+    <style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=reset] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+        background-color: #2E9AFE;
+    }
+    input[type=reset]:hover {
+        background-color: #2E9AFE;
+    }
+    
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 2px;
+    }
+    </style>
+
 <body>
 <div class="container" style="width: 1024px">
 
@@ -77,13 +124,8 @@
     <div class="col-xs-12">
         <div class="page-header">
             <!-- Header -->
-            <h1></h1>
+            <h1>Create Website</h1>
             <a href="index.php">View site</a>
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="input.php">Back to creating site</a>
-                </div>
-            </div>
         </div>
     </div>  
 </div>
@@ -140,7 +182,7 @@
 
     <div class="form-group">
         <input type="radio" name="pageType" value="None" checked> None<br>
-      <input type="radio" name="pageType" value="People"> People<br>
+        <input type="radio" name="pageType" value="People"> People<br>
         <input type="radio" name="pageType" value="News"> News<br>
         <input type="radio" name="pageType" value="Calendar"> Calendar
     </div>

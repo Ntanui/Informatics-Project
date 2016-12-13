@@ -1,7 +1,6 @@
 <?php
     include_once("dbutils.php");
     include_once("config.php");
-
     // get the page we are in
     if (isset($_GET['page'])) {
         $urlTitle = $_GET['page'];
@@ -12,7 +11,6 @@
     // get all the information about the page based on urlTitle
     // get a handle to the database
     $db = connectDB($dbHost, $dbUser, $dbPassword, $dbName);
-
     $query = "select id, pageTitle, menuTitle, parent, bodyTitle, body, pageType from pages where urlTitle='" . $urlTitle . "'";
     
     $result = queryDB($query, $db);
@@ -55,6 +53,53 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
     
 </head>
+
+    <style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=reset] {
+        width: 100%;
+        background-color: #2E9AFE;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+        background-color: #2E9AFE;
+    }
+    input[type=reset]:hover {
+        background-color: #2E9AFE;
+    }
+    
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 2px;
+    }
+    </style>
 
 <body>
     
@@ -119,7 +164,6 @@
 <?php
     // use this boolean to check whether we are having this menu or not
     $leftSideMenuOn = false;
-
     // check if this page needs to display a left-side menu
     if ($parent > 0) {
         
